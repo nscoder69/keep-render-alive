@@ -11,10 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Ping Render backend health endpoint
+      - name: Ping ESPORTS ARENA backend
         run: |
+          echo "Pinging Esports Arena backend..."
           curl --fail --silent --show-error --location \
             --max-time 60 \
             --retry 3 \
             --retry-delay 5 \
             https://esports-arena-906z.onrender.com/api/v1/public/ping
+
+      - name: Ping PROJECT ARENA backend
+        run: |
+          echo "Pinging Project Arena backend..."
+          curl --silent --show-error --location \
+            --max-time 60 \
+            --retry 3 \
+            --retry-delay 5 \
+            https://project-arena-backend.onrender.com/api/public/ping || \
+          curl --silent --show-error --location \
+            --max-time 60 \
+            --retry 3 \
+            --retry-delay 5 \
+            https://project-arena.onrender.com/api/public/ping
